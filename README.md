@@ -13,12 +13,12 @@ Edit the `homepage/handler.rb` file to return some HTML:
 
 ```ruby
 class Handler
-    def run(body, headers)
-        response_headers = {"content-type": "text/html"}
-        body = "<html>Hello world from the Ruby template</html>"
+  def run(body, headers)
+    response_headers = {"content-type": "text/html"}
+    body = "<html>Hello world from the Ruby template</html>"
 
-        return body, response_headers
-    end
+    return body, response_headers
+  end
 end
 ```
 

@@ -37,4 +37,3 @@ delete '/*' do
 
     return res
 end
-  
