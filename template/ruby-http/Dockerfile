@@ -5,7 +5,7 @@ ARG ADDITIONAL_PACKAGE
 # Alternatively use ADD https:// (which will not be cached by Docker builder)
 RUN apk --no-cache add curl ${ADDITIONAL_PACKAGE} \
   && echo "Pulling watchdog binary from Github." \
-  && curl -sSL https://github.com/openfaas-incubator/of-watchdog/releases/download/0.4.6/of-watchdog > /usr/bin/fwatchdog \
+  && curl -sSL https://github.com/openfaas-incubator/of-watchdog/releases/download/0.5.0/of-watchdog > /usr/bin/fwatchdog \
   && chmod +x /usr/bin/fwatchdog \
   && apk del curl
 
