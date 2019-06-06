@@ -1,19 +1,19 @@
+FROM openfaas/of-watchdog:0.5.3 as watchdog
+
 FROM ruby:2.4-alpine3.8
+
+COPY --from=watchdog /fwatchdog /usr/bin/fwatchdog
+RUN chmod +x /usr/bin/fwatchdog
 
 ARG ADDITIONAL_PACKAGE
 
-# Alternatively use ADD https:// (which will not be cached by Docker builder)
-RUN apk --no-cache add curl ${ADDITIONAL_PACKAGE} \
-  && echo "Pulling watchdog binary from Github." \
-  && curl -sSL https://github.com/openfaas-incubator/of-watchdog/releases/download/0.5.0/of-watchdog > /usr/bin/fwatchdog \
-  && chmod +x /usr/bin/fwatchdog \
-  && apk del curl
+RUN apk --no-cache add ${ADDITIONAL_PACKAGE}
 
 WORKDIR /home/app
 
 COPY Gemfile    		.
-COPY index.rb           .
-COPY function           function
+COPY index.rb       .
+COPY function       function
 
 RUN bundle install \
   && mkdir -p /home/app/function
@@ -40,3 +40,4 @@ ENV upstream_url="http://127.0.0.1:5000"
 ENV mode="http"
 
 CMD ["fwatchdog"]
+
