@@ -1,13 +1,13 @@
 FROM openfaas/of-watchdog:0.5.3 as watchdog
 
-FROM ruby:2.4-alpine3.8
+FROM ruby:2.6.3-slim-stretch
 
 COPY --from=watchdog /fwatchdog /usr/bin/fwatchdog
 RUN chmod +x /usr/bin/fwatchdog
 
 ARG ADDITIONAL_PACKAGE
-
-RUN apk --no-cache add ${ADDITIONAL_PACKAGE}
+RUN apt-get update \
+  && apt-get install -qy --no-install-recommends ${ADDITIONAL_PACKAGE}
 
 WORKDIR /home/app
 
@@ -22,8 +22,9 @@ WORKDIR /home/app/function
 
 RUN bundle install 
 
-RUN addgroup -S app \
-  && adduser app -S -G app
+# Create a non-root user
+RUN addgroup --system app \
+    && adduser --system --ingroup app app
 
 RUN chown app:app -R /home/app
 
@@ -40,4 +41,3 @@ ENV upstream_url="http://127.0.0.1:5000"
 ENV mode="http"
 
 CMD ["fwatchdog"]
-
