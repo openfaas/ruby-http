@@ -1,4 +1,4 @@
-FROM openfaas/of-watchdog:0.7.0 as watchdog
+FROM openfaas/of-watchdog:0.7.2 as watchdog
 
 FROM ruby:2.6.3-slim-stretch
 
