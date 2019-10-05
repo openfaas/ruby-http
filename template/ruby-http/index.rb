@@ -13,27 +13,23 @@ handler = Handler.new
 get '/*' do
   res, res_headers = handler.run request.body, request.env
 
-  headers = res_headers
-
-  return res
+  [200, res_headers, res]
 end
 
 post '/*' do
-    res, res_headers = handler.run request.body, request.env
-    headers = res_headers
-    return res
+  res, res_headers = handler.run request.body, request.env
+
+  [200, res_headers, res]
 end
 
 put '/*' do
-    res, res_headers = handler.run request.body, request.env
-    headers = res_headers
+  res, res_headers = handler.run request.body, request.env
 
-    return res
+  [200, res_headers, res]
 end
 
 delete '/*' do
-    res, res_headers = handler.run request.body, request.env
-    headers = res_headers
+  res, res_headers = handler.run request.body, request.env
 
-    return res
+  [200, res_headers, res]
 end
