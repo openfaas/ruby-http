@@ -3,7 +3,7 @@
 ### Usage:
 
 ```
-faas template pull
+faas template pull https://github.com/openfaas-incubator/ruby-http
 faas new --lang ruby-http homepage
 ```
 
