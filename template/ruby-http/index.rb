@@ -10,6 +10,12 @@ set :port, 5000
 
 handler = Handler.new
 
+options '/*' do
+  res, res_headers, status = handler.run request.body, request.env
+
+  [status || 204, res_headers, res]
+end
+
 get '/*' do
   res, res_headers, status = handler.run request.body, request.env
 
