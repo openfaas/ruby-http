@@ -8,34 +8,32 @@ require 'sinatra'
 set :port, 5000
 # set :bind, '0.0.0.0'
 
-handler = Handler.new
+helpers do
+  def respond_with(default_status)
+    handler = Handler.new
+
+    res, res_headers, status = handler.run request.body, request.env
+
+    [status || default_status, res_headers, res]
+  end
+end
 
 options '/*' do
-  res, res_headers, status = handler.run request.body, request.env
-
-  [status || 204, res_headers, res]
+  respond_with(204)
 end
 
 get '/*' do
-  res, res_headers, status = handler.run request.body, request.env
-
-  [status || 200, res_headers, res]
+  respond_with(200)
 end
 
 post '/*' do
-  res, res_headers, status = handler.run request.body, request.env
-
-  [status || 200, res_headers, res]
+  respond_with(200)
 end
 
 put '/*' do
-  res, res_headers, status = handler.run request.body, request.env
-
-  [status || 200, res_headers, res]
+  respond_with(200)
 end
 
 delete '/*' do
-  res, res_headers, status = handler.run request.body, request.env
-
-  [status || 200, res_headers, res]
+  respond_with(200)
 end
