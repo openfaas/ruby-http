@@ -15,7 +15,7 @@ Edit the `homepage/handler.rb` file to return some HTML:
 class Handler
   def run(body, headers)
     status_code = 200 # Optional status code, defaults to 200
-    response_headers = {"content-type": "text/html"}
+    response_headers = {"content-type" => "text/html"}
     body = "<html>Hello world from the Ruby template</html>"
 
     return body, response_headers, status_code
