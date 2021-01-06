@@ -1,4 +1,4 @@
-FROM openfaas/of-watchdog:0.7.2 as watchdog
+FROM openfaas/of-watchdog:0.8.1 as watchdog
 
 FROM ruby:2.7.2-slim-buster
 
