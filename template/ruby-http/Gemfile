@@ -1,3 +1,6 @@
 source 'https://rubygems.org'
 
+gem "nio4r"
 gem "sinatra"
+gem "rackup"
+gem "puma"

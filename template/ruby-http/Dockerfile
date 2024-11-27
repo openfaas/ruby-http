@@ -1,6 +1,15 @@
-FROM openfaas/of-watchdog:0.8.1 as watchdog
+FROM ghcr.io/openfaas/of-watchdog:0.10.6 as watchdog
 
-FROM ruby:2.7.2-slim-buster
+FROM ruby:3.3.6-slim
+
+# AE: This step can take a few moments, however the resulting image
+# is half the size of the non-slim image
+RUN apt-get update && apt-get install -qqy \
+    build-essential \
+    libssl-dev \
+    libffi-dev \
+    zlib1g-dev \
+    && rm -rf /var/lib/apt/lists/*
 
 COPY --from=watchdog /fwatchdog /usr/bin/fwatchdog
 RUN chmod +x /usr/bin/fwatchdog
