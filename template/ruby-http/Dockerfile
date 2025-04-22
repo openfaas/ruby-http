@@ -1,6 +1,6 @@
-FROM ghcr.io/openfaas/of-watchdog:0.10.6 as watchdog
+FROM ghcr.io/openfaas/of-watchdog:0.10.9 as watchdog
 
-FROM ruby:3.3.6-slim
+FROM ruby:3.4.3-slim
 
 # AE: This step can take a few moments, however the resulting image
 # is half the size of the non-slim image

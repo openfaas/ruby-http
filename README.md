@@ -2,7 +2,7 @@
 
 This template uses [Sinatra internally](https://sinatrarb.com/intro.html), and the slim Docker image for Ruby to keep the image small. A native build toolchain is installed, which still results in a smaller image than the standard Ruby image on the Docker Hub.
 
-Ruby version: 3.3.6.
+Ruby version: 3.4.3.
 
 ### Usage:
 
